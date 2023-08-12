@@ -1,3 +1,3 @@
 # QuickGigs
 
-The beginning of QuickGigs.
+QuickGigs Application
