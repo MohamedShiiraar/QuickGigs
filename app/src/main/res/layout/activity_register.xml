@@ -22,36 +22,39 @@
         android:id="@+id/textView2"
         android:layout_width="190dp"
         android:layout_height="49dp"
+        android:layout_marginStart="92dp"
+        android:layout_marginEnd="129dp"
+        android:layout_marginBottom="61dp"
         android:text="Sign Up!"
         android:textAlignment="viewStart"
+        android:textAllCaps="false"
+        android:textColor="#0C0C0C"
         android:textSize="24sp"
         android:textStyle="bold"
-        tools:layout_editor_absoluteX="92dp"
-        tools:layout_editor_absoluteY="99dp" />
-
-    <ImageButton
-        android:id="@+id/imageButton"
-        android:layout_width="57dp"
-        android:layout_height="52dp"
-        android:backgroundTint="#00FFFFFF"
-        android:tint="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.107"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.069"
-        app:srcCompat="?attr/actionModeCloseDrawable" />
+        app:layout_constraintVertical_bias="0.159" />
+
 
     <EditText
         android:id="@+id/edtEmailAddress"
         android:layout_width="202dp"
         android:layout_height="43dp"
         android:ems="10"
+        android:foregroundTint="#00952727"
         android:hint="Email"
         android:inputType="textEmailAddress"
-        tools:layout_editor_absoluteX="92dp"
-        tools:layout_editor_absoluteY="215dp" />
+        android:textColorHighlight="@color/blue"
+        android:textColorLink="@color/blue"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.454"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.356" />
 
     <EditText
         android:id="@+id/edtName"
@@ -60,9 +63,13 @@
         android:ems="10"
         android:hint="First Name"
         android:inputType="text"
-        android:text="Name"
-        tools:layout_editor_absoluteX="92dp"
-        tools:layout_editor_absoluteY="274dp" />
+        android:textColorLink="@color/blue"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.45"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.435" />
 
     <EditText
         android:id="@+id/edtSurname"
@@ -71,9 +78,13 @@
         android:ems="10"
         android:hint="Surname"
         android:inputType="text"
-        android:text="Surname"
-        tools:layout_editor_absoluteX="92dp"
-        tools:layout_editor_absoluteY="333dp" />
+        android:textColorLink="@color/blue"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.45"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.513" />
 
     <EditText
         android:id="@+id/edtUsername"
@@ -82,9 +93,13 @@
         android:ems="10"
         android:hint="Username"
         android:inputType="text"
-        android:text="Username"
-        tools:layout_editor_absoluteX="92dp"
-        tools:layout_editor_absoluteY="396dp" />
+        android:textColorLink="@color/blue"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.45"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.594" />
 
     <EditText
         android:id="@+id/edtPassword"
@@ -93,6 +108,11 @@
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
-        tools:layout_editor_absoluteX="92dp"
-        tools:layout_editor_absoluteY="466dp" />
+        android:textColorLink="@color/blue"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.45"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.674" />
 </androidx.constraintlayout.widget.ConstraintLayout>
