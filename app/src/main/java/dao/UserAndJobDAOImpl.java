@@ -70,7 +70,7 @@ this.context=context;
 
         contentValues.put(COLUMN_USER_EMAIL_ADDRESS, user.getEmailaddress());
         contentValues.put(COLUMN_USER_FIRST_NAME, user.getFirstName());
-        contentValues.put(COLUMN_USER_EMAIL_ADDRESS, user.getSurname());
+        contentValues.put(COLUMN_USER_LAST_NAME, user.getSurname());
         contentValues.put(COLUMN_USER_USERNAME,user.getUsername());
         contentValues.put(COLUMN_USER_PASSWORD, user.getPassword());
 
