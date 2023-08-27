@@ -3,8 +3,8 @@ package model;
 public class Jobs {
     private long id;
     private String jobTitle;
-    private float ratePerHour;
-    private int contactNum;
+    private String ratePerHour;
+    private String contactNum;
     private String areaLocated;
 
     private long user_id;
@@ -13,14 +13,14 @@ public class Jobs {
 
     }
 
-    public Jobs(String jobTitle,float ratePerHour,int contactNum,String areaLocated) {
+    public Jobs(String jobTitle,String ratePerHour,String contactNum,String areaLocated) {
         this.jobTitle=jobTitle;
         this.ratePerHour=ratePerHour;
         this.contactNum=contactNum;
         this.areaLocated=areaLocated;
 
     }
-    public Jobs(long id,String jobTitle,float ratePerHour,int contactNum,String areaLocated,long user_id) {
+    public Jobs(long id,String jobTitle,String ratePerHour,String contactNum,String areaLocated,long user_id) {
         this.id=id;
         this.jobTitle=jobTitle;
         this.ratePerHour=ratePerHour;
@@ -38,19 +38,19 @@ public class Jobs {
         this.jobTitle = jobTitle;
     }
 
-    public float getRatePerHour() {
+    public String getRatePerHour() {
         return ratePerHour;
     }
 
-    public void setRatePerHour(float ratePerHour) {
+    public void setRatePerHour(String ratePerHour) {
         this.ratePerHour = ratePerHour;
     }
 
-    public int getContactNum() {
+    public String getContactNum() {
         return contactNum;
     }
 
-    public void setContactNum(int contactNum) {
+    public void setContactNum(String contactNum) {
         this.contactNum = contactNum;
     }
 
