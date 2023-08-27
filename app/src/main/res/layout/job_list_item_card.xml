@@ -40,7 +40,7 @@
             android:maxLines="2"
             android:text="This is job 1"
             android:textAllCaps="false"
-            android:textColor="@color/dark_blue_gray"
+            android:textColor="#0E0E0E"
             android:textSize="13sp" />
 
     </LinearLayout>
