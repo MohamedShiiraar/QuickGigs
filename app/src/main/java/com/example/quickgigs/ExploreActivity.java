@@ -6,19 +6,39 @@ import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import java.util.List;
+
+import dao.UserAndJobDAOImpl;
+import model.Jobs;
 
 public class ExploreActivity extends AppCompatActivity {
     private BottomNavigationView bottomNavView;
     private String authenticatedUser;
+    private UserAndJobDAOImpl userAndJobDAO;
+    private RecyclerView recyclerView;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_explore);
 
+        userAndJobDAO = new UserAndJobDAOImpl(this);
+
         bottomNavView = findViewById(R.id.bottomNavigationView);
         bottomNavView.setSelectedItemId(R.id.nav_explore);
+
+        recyclerView = findViewById(R.id.recycleView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        long userId = 1;
+        List<Jobs> jobList = userAndJobDAO.getUserJobs(userId);
+
+        JobListAdapter adapter = new JobListAdapter(jobList);
+        recyclerView.setAdapter(adapter);
 
         bottomNavView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override

@@ -1,5 +1,6 @@
 package com.example.quickgigs;
 
+import android.content.ContentValues;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,7 +12,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import dao.UserAndJobDAOImpl;
 import model.User;
 import com.example.quickgigs.Utilities.DBStrings;
-import com.example.quickgigs.dao.UserAndJobsDAOImpl;
 
 public class AddJobsActivity extends AppCompatActivity {
 
@@ -20,25 +20,11 @@ public class AddJobsActivity extends AppCompatActivity {
     private EditText edtContactNumber;
     private EditText edtArea;
     private Button btnPost;
+    private UserAndJobDAOImpl userAndJobDAOImpl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_addjob);
-
-        edtJobTitle = findViewById(R.id.edtJobTitle);
-        edtRatePerHour = findViewById(R.id.edtRatePerHour);
-        edtContactNumber = findViewById(R.id.edtContactNumber);
-        edtArea = findViewById(R.id.edtArea);
-        btnPost = findViewById(R.id.btnPost);
-
-        userAndJobDAOImpl = new UserAndJobsDAOImpl(this);
-
-        btnPost.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                addJob();
-            }
-        });
     }
 }
