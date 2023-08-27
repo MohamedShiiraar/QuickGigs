@@ -245,8 +245,8 @@ this.context=context;
         if(cursor.moveToNext()) {
             long jobsId = cursor.getLong(0);
             String jobtitle = cursor.getString(1);
-            float rateperhour = cursor.getFloat(2);
-            int contactNumber = cursor.getInt(3);
+            String rateperhour = cursor.getString(2);
+            String contactNumber = cursor.getString(3);
             String areaLocated = cursor.getString(4);
             long userId = cursor.getInt(5);
 
@@ -265,8 +265,8 @@ this.context=context;
         while(cursor.moveToNext()) {
             long jobsId = cursor.getLong(0);
             String jobtitle = cursor.getString(1);
-            float rateperhour = cursor.getFloat(2);
-            int contactNumber = cursor.getInt(3);
+            String rateperhour = cursor.getString(2);
+            String contactNumber = cursor.getString(3);
             String areaLocated = cursor.getString(4);
             long userId = cursor.getInt(5);
 
