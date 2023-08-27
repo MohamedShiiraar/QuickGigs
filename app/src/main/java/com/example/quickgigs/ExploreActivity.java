@@ -33,6 +33,7 @@ public class ExploreActivity extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.recycleView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        authenticatedUser = getIntent().getStringExtra("authenticatedUser");
 
         long userId = 1;
         List<Jobs> jobList = userAndJobDAO.getUserJobs(userId);
@@ -47,12 +48,16 @@ public class ExploreActivity extends AppCompatActivity {
                 switch(item.getItemId())
                 {
                     case R.id.nav_home:
-                        Intent goToProjectActivityIntent = new Intent(ExploreActivity.this, ActivityHome.class);
-                        moveToIntent(goToProjectActivityIntent);
+                        Intent goToHomeActivityIntent = new Intent(ExploreActivity.this, ActivityHome.class);
+                        goToHomeActivityIntent.putExtra("authenticatedUser", authenticatedUser);
+                        startActivity(goToHomeActivityIntent);
+                        overridePendingTransition(0,0);
                         return true;
                     case R.id.nav_profile:
-                        Intent goToProjectActivityIntent1 = new Intent(ExploreActivity.this, ProfileActivity.class);
-                        moveToIntent(goToProjectActivityIntent1);
+                        Intent goToProfileActivityIntent = new Intent(ExploreActivity.this, ProfileActivity.class);
+                        goToProfileActivityIntent.putExtra("authenticatedUser", authenticatedUser);
+                        startActivity(goToProfileActivityIntent);
+                        overridePendingTransition(0,0);
                         return true;
                     case R.id.nav_explore:
                         return true;

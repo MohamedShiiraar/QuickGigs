@@ -47,7 +47,9 @@ public class LoginActivity extends AppCompatActivity {
 
     }
     public void openHome(){
+        String emailaddress =edtEmail.getText().toString().trim();
         Intent intent=new Intent(this, ActivityHome.class);
+        intent.putExtra("authenticatedUser", emailaddress);
         startActivity(intent);
     }
 
