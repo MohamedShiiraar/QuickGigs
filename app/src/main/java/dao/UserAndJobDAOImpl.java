@@ -129,6 +129,26 @@ this.context=context;
         return valid;
     }
 
+    public long getCurrentUserId(String emailAddress) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(USER_TABLE,// Selecting Table
+                new String[]{COLUMN_USER_ID},//Selecting columns want to query
+                COLUMN_USER_EMAIL_ADDRESS + " = ?",
+                new String[]{String.valueOf(emailAddress)},//Where clause
+                null, null, null);
+
+        long userId = -999;
+
+        while(cursor.moveToNext()) {
+            userId = cursor.getLong(0);
+        }
+
+        closeCursor(cursor);
+        return userId;
+
+    }
+
     public User getUserDetails(String theEmailAddress) {
         SQLiteDatabase db = this.getReadableDatabase();
         User user = null;

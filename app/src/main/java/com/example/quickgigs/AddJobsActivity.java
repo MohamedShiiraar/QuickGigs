@@ -35,6 +35,13 @@ public class AddJobsActivity extends AppCompatActivity {
 
     private Dialog dialog;
 
+    //private UserAndJobDAOImpl UserAndJobDAOImpl;
+
+    //private long userId;
+    //private String authenticatedUser;
+
+    //private Dialog dialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
