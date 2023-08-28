@@ -107,7 +107,6 @@ public class ProfileActivity extends AppCompatActivity {
     }
     private void loadUserData() {
         userId = userAndJobDAO.getCurrentUserId(authenticatedUser);
-
         System.out.println("USER ID: " + userId);
         User userDetails = userAndJobDAO.getUserDetails(authenticatedUser);
         edtNameAndSurname.setText(userDetails.getFirstName()+" "+userDetails.getSurname());
@@ -117,6 +116,7 @@ public class ProfileActivity extends AppCompatActivity {
 
     public void openUpdateDetails() {
         Intent intent = new Intent(this,UpdateDetailsActivity.class);
+        intent.putExtra("authenticatedUser", authenticatedUser);
         startActivity(intent);
     }
 

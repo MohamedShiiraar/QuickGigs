@@ -42,6 +42,9 @@
         <activity
             android:name=".ActiveJobsActivity"
             android:parentActivityName=".ProfileActivity" />
+        <activity
+            android:name=".ExploreActivity"
+            android:parentActivityName=".ProfileActivity" />
     </application>
 
 </manifest>
