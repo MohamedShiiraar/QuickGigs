@@ -101,7 +101,7 @@ this.context=context;
         return false;
     }
 
-    //Login
+    //Login function
     public boolean login(User user) {
         SQLiteDatabase db = this.getReadableDatabase();
         boolean valid = false;
