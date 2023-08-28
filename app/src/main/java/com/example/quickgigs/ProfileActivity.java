@@ -1,6 +1,17 @@
 package com.example.quickgigs;
 
+import static com.example.quickgigs.Utilities.DBStrings.COLUMN_USER_EMAIL_ADDRESS;
+import static com.example.quickgigs.Utilities.DBStrings.COLUMN_USER_FIRST_NAME;
+import static com.example.quickgigs.Utilities.DBStrings.COLUMN_USER_ID;
+import static com.example.quickgigs.Utilities.DBStrings.COLUMN_USER_LAST_NAME;
+import static com.example.quickgigs.Utilities.DBStrings.COLUMN_USER_PASSWORD;
+import static com.example.quickgigs.Utilities.DBStrings.COLUMN_USER_USERNAME;
+import static com.example.quickgigs.Utilities.DBStrings.USER_TABLE;
+
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -10,6 +21,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import model.User;
 
 public class ProfileActivity extends AppCompatActivity {
     private Button btnEditProfileDets;
@@ -56,7 +69,6 @@ public class ProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 openUpdateDetails();
-
             }
         });
 
