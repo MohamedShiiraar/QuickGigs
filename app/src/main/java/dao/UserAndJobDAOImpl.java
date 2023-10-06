@@ -70,7 +70,7 @@ this.context=context;
 
         contentValues.put(COLUMN_USER_EMAIL_ADDRESS, user.getEmailaddress());
         contentValues.put(COLUMN_USER_FIRST_NAME, user.getFirstName());
-        contentValues.put(COLUMN_USER_EMAIL_ADDRESS, user.getSurname());
+        contentValues.put(COLUMN_USER_LAST_NAME, user.getSurname());
         contentValues.put(COLUMN_USER_USERNAME,user.getUsername());
         contentValues.put(COLUMN_USER_PASSWORD, user.getPassword());
 
@@ -152,6 +152,28 @@ this.context=context;
 
         closeCursor(cursor);
         return user;
+    }
+    //update user details
+    public boolean updateUser(User user) {
+        long result = 0;
+        SQLiteDatabase DB = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COLUMN_USER_EMAIL_ADDRESS, user.getEmailaddress());
+        contentValues.put(COLUMN_USER_FIRST_NAME, user.getFirstName());
+        contentValues.put(COLUMN_USER_LAST_NAME,user.getSurname());
+        contentValues.put(COLUMN_USER_USERNAME,user.getUsername());
+        contentValues.put(COLUMN_USER_PASSWORD,user.getPassword());
+
+        Cursor cursor = DB.rawQuery("Select * from " + USER_TABLE + " where " + COLUMN_USER_ID  + " = ?", new String[]{String.valueOf(user.getId())});
+        if (cursor.getCount() > 0) {
+            result = DB.update(USER_TABLE, contentValues, COLUMN_USER_ID + " = ?", new String[]{String.valueOf(user.getId())});
+
+        }
+
+        closeCursor(cursor);
+        DB.close();
+
+        return result == -1 ? false : true;
     }
 
     //Add job
@@ -237,6 +259,7 @@ this.context=context;
         return jobs;
 
     }
+
     private void readDataFromCursor(List<Jobs> jobsList, Cursor cursor) {
         int count = 0;
         while(cursor.moveToNext()) {
