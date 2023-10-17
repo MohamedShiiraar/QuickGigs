@@ -28,18 +28,22 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                String email = edtEmail.getText().toString();
+                String email = edtEmail.getText().toString().trim();
                 String password = edtPassword1.getText().toString();
 
-                User user = new User();
-                user.setEmailaddress(email);
-                user.setPassword(password);
+                if (isValidEmail(email) && isValidPassword(password)) {
+                    User user = new User();
+                    user.setEmailaddress(email);
+                    user.setPassword(password);
 
-                UserAndJobDAOImpl userDao = new UserAndJobDAOImpl(LoginActivity.this);
-                if (userDao.login(user)) {
-                    openHome();
+                    UserAndJobDAOImpl userDao = new UserAndJobDAOImpl(LoginActivity.this);
+                    if (userDao.login(user)) {
+                        openHome();
+                    } else {
+                        Toast.makeText(LoginActivity.this, "Login failed. Invalid credentials.", Toast.LENGTH_SHORT).show();
+                    }
                 } else {
-                    Toast.makeText(LoginActivity.this, "Login failed. Invalid credentials.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "Invalid input format.", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -53,4 +57,12 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public boolean isValidEmail(String email) {
+        String regexPattern = "^[A-Za-z0-9+_.-]+@(.+)$";
+        return email.matches(regexPattern);
+    }
+
+    public boolean isValidPassword(String password) {
+        return password.length() >= 8;
+    }
 }
