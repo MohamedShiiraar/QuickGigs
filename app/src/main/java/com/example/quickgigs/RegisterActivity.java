@@ -36,6 +36,7 @@ public class RegisterActivity extends AppCompatActivity {
                 String username = edtUsername.getText().toString();
                 String password = edtPassword.getText().toString();
 
+
                 // Create a User object with entered registration details
                 User user = new User();
                 user.setEmailaddress(email);

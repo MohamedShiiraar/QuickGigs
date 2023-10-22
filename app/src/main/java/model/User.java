@@ -21,6 +21,14 @@ public class User {
 
     }
 
+    public User(long id,String emailaddress,String firstName,String surname,String password) {
+        this.id=id;
+        this.emailaddress=emailaddress;
+        this.firstName=firstName;
+        this.surname=surname;
+        this.password=password;
+    }
+
     public User(long id,String emailaddress,String firstName,String surname,String username,String password) {
         this.id=id;
         this.emailaddress=emailaddress;

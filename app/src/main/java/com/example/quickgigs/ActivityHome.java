@@ -23,6 +23,8 @@ public class ActivityHome extends AppCompatActivity {
         bottomNavView = findViewById(R.id.bottomNavigationView);
         bottomNavView.setSelectedItemId(R.id.nav_home);
 
+        authenticatedUser = getIntent().getStringExtra("authenticatedUser");
+
         bottomNavView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -32,17 +34,21 @@ public class ActivityHome extends AppCompatActivity {
                     case R.id.nav_home:
                         return true;
                     case R.id.nav_profile:
-                        Intent goToProjectActivityIntent = new Intent(ActivityHome.this, ProfileActivity.class);
-                        moveToIntent(goToProjectActivityIntent);
+                        Intent goToProfileActivityIntent = new Intent(ActivityHome.this, ProfileActivity.class);
+                        goToProfileActivityIntent.putExtra("authenticatedUser", authenticatedUser);
+                        startActivity(goToProfileActivityIntent);
+                        overridePendingTransition(0,0);
                         return true;
                     case R.id.nav_explore:
                         Intent goToExploreActivityIntent = new Intent(ActivityHome.this, ExploreActivity.class);
+                        goToExploreActivityIntent.putExtra("authenticatedUser", authenticatedUser);
                         moveToIntent(goToExploreActivityIntent);
                         return true;
                 }
                 return false;
             }
         });
+
 
         btnCreateJobList.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,6 +60,7 @@ public class ActivityHome extends AppCompatActivity {
     }
     public void openAddJob() {
         Intent intent = new Intent(this,AddJobsActivity.class);
+        intent.putExtra("authenticatedUser",authenticatedUser);
         startActivity(intent);
     }
     private void moveToIntent(Intent intent) {

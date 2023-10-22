@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <ImageView
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginRight="10dp"
+        android:layout_centerVertical="true"
+        android:id="@+id/imageview"/>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/jobName"
+        android:layout_toEndOf="@id/imageview"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        tools:text="jobName"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/jobRate"
+        android:layout_toEndOf="@id/imageview"
+        android:layout_below="@id/jobName"
+        android:textColor="@color/black"
+        android:layout_marginRight="20dp"
+        android:textSize="20dp"
+        tools:text="jobRate"/>
+
+    <TextView
+        android:id="@+id/jobLocation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/jobName"
+        android:layout_marginStart="212dp"
+        android:layout_marginLeft="-131dp"
+        android:layout_marginTop="0dp"
+        android:layout_toEndOf="@id/imageview"
+        android:layout_toRightOf="@id/jobRate"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        tools:text="jobLocation" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_below="@id/imageview"
+        android:layout_marginTop="10dp"
+        android:layout_height="2dp"
+        android:background="@color/blue"/>
+
+</RelativeLayout>

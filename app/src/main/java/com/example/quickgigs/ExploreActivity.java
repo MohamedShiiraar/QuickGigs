@@ -6,16 +6,34 @@ import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.util.List;
+
+import dao.UserAndJobDAOImpl;
+import model.Jobs;
+
 public class ExploreActivity extends AppCompatActivity {
-    private BottomNavigationView bottomNavView;
+    private BottomNavigationView bottomNavView ;
     private String authenticatedUser;
+    private UserAndJobDAOImpl userAndJobDAO;
+    private RecyclerView recyclerView;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_explore);
+
+        userAndJobDAO = new UserAndJobDAOImpl(this);
+        authenticatedUser = getIntent().getStringExtra("authenticatedUser");
+
+        List<Jobs> jobList = userAndJobDAO.getUserJobs(userAndJobDAO.getCurrentUserId(authenticatedUser));
+
+        RecyclerView recyclerView = findViewById(R.id.recyclerview);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(new JobListAdapter(getApplicationContext(),jobList));
 
         bottomNavView = findViewById(R.id.bottomNavigationView);
         bottomNavView.setSelectedItemId(R.id.nav_explore);
@@ -27,12 +45,16 @@ public class ExploreActivity extends AppCompatActivity {
                 switch(item.getItemId())
                 {
                     case R.id.nav_home:
-                        Intent goToProjectActivityIntent = new Intent(ExploreActivity.this, ActivityHome.class);
-                        moveToIntent(goToProjectActivityIntent);
+                        Intent goToHomeActivityIntent = new Intent(ExploreActivity.this, ActivityHome.class);
+                        goToHomeActivityIntent.putExtra("authenticatedUser", authenticatedUser);
+                        startActivity(goToHomeActivityIntent);
+                        overridePendingTransition(0,0);
                         return true;
                     case R.id.nav_profile:
-                        Intent goToProjectActivityIntent1 = new Intent(ExploreActivity.this, ProfileActivity.class);
-                        moveToIntent(goToProjectActivityIntent1);
+                        Intent goToProfileActivityIntent = new Intent(ExploreActivity.this, ProfileActivity.class);
+                        goToProfileActivityIntent.putExtra("authenticatedUser", authenticatedUser);
+                        startActivity(goToProfileActivityIntent);
+                        overridePendingTransition(0,0);
                         return true;
                     case R.id.nav_explore:
                         return true;
