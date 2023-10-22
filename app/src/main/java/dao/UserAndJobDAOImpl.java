@@ -250,12 +250,8 @@ this.context=context;
         SQLiteDatabase db = this.getReadableDatabase();
         List<Jobs> JobsList = new ArrayList<>();
         Cursor cursor = db.rawQuery("SELECT * FROM " + JOBS_TABLE + " WHERE " + COLUMN_USER_JOBS_FK + " = ?", new String[]{String.valueOf(userId)});
-        if (cursor != null && cursor.moveToFirst()) {
             // Now you can safely read data from the cursor
             readDataFromCursor(JobsList, cursor);
-        }
-
-
         return JobsList;
 
     }
@@ -266,10 +262,7 @@ this.context=context;
         SQLiteDatabase db = this.getReadableDatabase();
         List<Jobs> JobsList2 = new ArrayList<>();
         Cursor cursor = db.rawQuery("SELECT * FROM " + JOBS_TABLE + " WHERE " + COLUMN_JOBS_ID + " = ?", new String[]{String.valueOf(id)});
-        if (cursor != null && cursor.moveToFirst()) {
-            // Now you can safely read data from the cursor
             readDataFromCursor(JobsList2, cursor);
-        }
 
         return JobsList2;
 
