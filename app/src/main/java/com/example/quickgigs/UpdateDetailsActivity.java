@@ -30,6 +30,7 @@ public class UpdateDetailsActivity extends AppCompatActivity {
     private String authenticatedUser;
 
     private UserAndJobDAOImpl userAndJobDAO;
+    private BottomNavigationView bottomNavView;
     private long userId;
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -47,7 +48,35 @@ public class UpdateDetailsActivity extends AppCompatActivity {
         authenticatedUser = getIntent().getStringExtra("authenticatedUser");
         System.out.println("auth user: " + authenticatedUser);
 
+        bottomNavView = findViewById(R.id.bottomNavigationView);
+        bottomNavView.setSelectedItemId(R.id.nav_profile);
+
         loadUserData();
+
+
+        bottomNavView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                switch(item.getItemId())
+                {
+                    case R.id.nav_home:
+                        Intent goToProjectActivity = new Intent(UpdateDetailsActivity.this, ActivityHome.class);
+                        goToProjectActivity.putExtra("authenticatedUser", authenticatedUser);
+                        startActivity(goToProjectActivity);
+                        overridePendingTransition(0,0);
+                        return true;
+                    case R.id.nav_profile:
+                        return true;
+                    case R.id.nav_explore:
+                        Intent goToExploreActivityIntent = new Intent(UpdateDetailsActivity.this, ExploreActivity.class);
+                        goToExploreActivityIntent.putExtra("authenticatedUser", authenticatedUser);
+                        moveToIntent(goToExploreActivityIntent);
+                        return true;
+                }
+                return false;
+            }
+        });
 
 
         edtUpdateDets.setOnClickListener(new View.OnClickListener() {
@@ -88,37 +117,8 @@ public class UpdateDetailsActivity extends AppCompatActivity {
         intent.putExtra("authenticatedUser", authenticatedUser);
         startActivity(intent);
     }
+    private void moveToIntent(Intent intent) {
+        intent.putExtra("authenticatedUser", authenticatedUser);
+        startActivity(intent);
     }
-
-
-
-    /*@SuppressLint("Range")
-    private void loadUserDetails() {
-        int userId = 1; // NOTE: You should get this value dynamically
-        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM " + DBStrings.USER_TABLE + " WHERE " + DBStrings.COLUMN_USER_ID + " = " + userId, null);
-
-        if (cursor.moveToFirst()) {
-            edtEditEmail.setText(cursor.getString(cursor.getColumnIndex(DBStrings.COLUMN_USER_EMAIL_ADDRESS)));
-            edtEditPassword.setText(cursor.getString(cursor.getColumnIndex(DBStrings.COLUMN_USER_PASSWORD)));
-            edtEditName.setText(cursor.getString(cursor.getColumnIndex(DBStrings.COLUMN_USER_FIRST_NAME)));
-            edtEditSurname.setText(cursor.getString(cursor.getColumnIndex(DBStrings.COLUMN_USER_LAST_NAME)));
-        }
     }
-
-    public void updateDetails(View view) {
-        String updatedEmail = edtEditEmail.getText().toString();
-        String updatedPassword = edtEditPassword.getText().toString();
-        String updatedName = edtEditName.getText().toString();
-        String updatedSurname = edtEditSurname.getText().toString();
-
-        int userId = 1; // NOTE: You should get this value dynamically
-
-        sqLiteDatabase.execSQL("UPDATE " + DBStrings.USER_TABLE + " SET " +
-                DBStrings.COLUMN_USER_EMAIL_ADDRESS + " = '" + updatedEmail + "', " +
-                DBStrings.COLUMN_USER_PASSWORD + " = '" + updatedPassword + "', " +
-                DBStrings.COLUMN_USER_FIRST_NAME + " = '" + updatedName + "', " +
-                DBStrings.COLUMN_USER_LAST_NAME + " = '" + updatedSurname +
-                "' WHERE " + DBStrings.COLUMN_USER_ID + " = " + userId);
-
-        Toast.makeText(this, "Details Updated!", Toast.LENGTH_SHORT).show();
-    }*/

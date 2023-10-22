@@ -44,7 +44,7 @@
             android:parentActivityName=".ProfileActivity" />
         <activity
             android:name=".ExploreActivity"
-            android:parentActivityName=".ProfileActivity" />
+            android:parentActivityName=".ActivityHome" />
     </application>
 
 </manifest>

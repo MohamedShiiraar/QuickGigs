@@ -17,7 +17,7 @@ import dao.UserAndJobDAOImpl;
 import model.Jobs;
 
 public class ExploreActivity extends AppCompatActivity {
-    private BottomNavigationView bottomNavView;
+    private BottomNavigationView bottomNavView ;
     private String authenticatedUser;
     private UserAndJobDAOImpl userAndJobDAO;
     private RecyclerView recyclerView;
@@ -27,19 +27,16 @@ public class ExploreActivity extends AppCompatActivity {
         setContentView(R.layout.activity_explore);
 
         userAndJobDAO = new UserAndJobDAOImpl(this);
+        authenticatedUser = getIntent().getStringExtra("authenticatedUser");
+
+        List<Jobs> jobList = userAndJobDAO.getUserJobs(userAndJobDAO.getCurrentUserId(authenticatedUser));
+
+        RecyclerView recyclerView = findViewById(R.id.recyclerview);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(new JobListAdapter(getApplicationContext(),jobList));
 
         bottomNavView = findViewById(R.id.bottomNavigationView);
         bottomNavView.setSelectedItemId(R.id.nav_explore);
-
-        recyclerView = findViewById(R.id.recycleView);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        authenticatedUser = getIntent().getStringExtra("authenticatedUser");
-
-        long userId = 1;
-        List<Jobs> jobList = userAndJobDAO.getUserJobs(userId);
-
-        JobListAdapter adapter = new JobListAdapter(jobList);
-        recyclerView.setAdapter(adapter);
 
         bottomNavView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override

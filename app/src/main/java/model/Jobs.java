@@ -30,6 +30,14 @@ public class Jobs {
 
     }
 
+    public Jobs(String jobTitle, String jobRatePerHour, String jobContact, String jobArea, long userId) {
+        this.jobTitle=jobTitle;
+        this.ratePerHour=jobRatePerHour;
+        this.contactNum=jobContact;
+        this.areaLocated=jobArea;
+        this.user_id=userId;
+    }
+
     public String getJobTitle() {
         return jobTitle;
     }

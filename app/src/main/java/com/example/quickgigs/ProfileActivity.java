@@ -63,7 +63,12 @@ public class ProfileActivity extends AppCompatActivity {
         bottomNavView = findViewById(R.id.bottomNavigationView);
         bottomNavView.setSelectedItemId(R.id.nav_profile);
 
-        loadUserData();
+        User userDetails = userAndJobDAO.getUserDetails(authenticatedUser);
+
+        if (userDetails!=null) {
+            loadUserData();
+        }
+
 
         bottomNavView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -122,6 +127,7 @@ public class ProfileActivity extends AppCompatActivity {
 
     public void openActiveJobs() {
         Intent intent = new Intent(this, ActiveJobsActivity.class);
+        intent.putExtra("authenticatedUser", authenticatedUser);
         startActivity(intent);
     }
     private void moveToIntent(Intent intent) {

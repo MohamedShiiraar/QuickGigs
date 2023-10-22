@@ -49,6 +49,7 @@ public class ActivityHome extends AppCompatActivity {
             }
         });
 
+
         btnCreateJobList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -59,6 +60,7 @@ public class ActivityHome extends AppCompatActivity {
     }
     public void openAddJob() {
         Intent intent = new Intent(this,AddJobsActivity.class);
+        intent.putExtra("authenticatedUser",authenticatedUser);
         startActivity(intent);
     }
     private void moveToIntent(Intent intent) {

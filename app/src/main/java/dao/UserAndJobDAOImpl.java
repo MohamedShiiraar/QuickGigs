@@ -1,5 +1,6 @@
 package dao;
 
+import static com.example.quickgigs.Utilities.DBStrings.COLUMN_JOBS_AREA_LOCATED;
 import static com.example.quickgigs.Utilities.DBStrings.COLUMN_JOBS_CONTACT;
 import static com.example.quickgigs.Utilities.DBStrings.COLUMN_JOBS_ID;
 import static com.example.quickgigs.Utilities.DBStrings.COLUMN_JOBS_RATE_PER_HOUR;
@@ -216,6 +217,7 @@ this.context=context;
         contentValues.put(COLUMN_JOBS_TITLE, jobs.getJobTitle());
         contentValues.put(COLUMN_JOBS_RATE_PER_HOUR, jobs.getRatePerHour());
         contentValues.put(COLUMN_JOBS_CONTACT, String.valueOf(jobs.getContactNum()));
+        contentValues.put(COLUMN_JOBS_AREA_LOCATED,jobs.getAreaLocated());
         contentValues.put(COLUMN_USER_JOBS_FK, String.valueOf(userId));
 
         result = dbWrite.insert(JOBS_TABLE, null, contentValues);
@@ -248,35 +250,28 @@ this.context=context;
         SQLiteDatabase db = this.getReadableDatabase();
         List<Jobs> JobsList = new ArrayList<>();
         Cursor cursor = db.rawQuery("SELECT * FROM " + JOBS_TABLE + " WHERE " + COLUMN_USER_JOBS_FK + " = ?", new String[]{String.valueOf(userId)});
-        readDataFromCursor(JobsList, cursor);
+        if (cursor != null && cursor.moveToFirst()) {
+            // Now you can safely read data from the cursor
+            readDataFromCursor(JobsList, cursor);
+        }
+
 
         return JobsList;
 
     }
     //Get job by ID
 
-    public Jobs getJobsById (long id) {
-        SQLiteDatabase DB = this.getWritableDatabase();
-        Jobs jobs = null;
+    public List<Jobs> getJobsById (long id) {
 
-        Cursor cursor = DB.rawQuery("Select * from " + JOBS_TABLE + " where " + COLUMN_JOBS_ID  + " = ?", new String[]{String.valueOf(id)});
-
-        System.out.println("cursor: " + cursor);
-        if(cursor.moveToNext()) {
-            long jobsId = cursor.getLong(0);
-            String jobtitle = cursor.getString(1);
-            String rateperhour = cursor.getString(2);
-            String contactNumber = cursor.getString(3);
-            String areaLocated = cursor.getString(4);
-            long userId = cursor.getInt(5);
-
-
-            jobs = new Jobs(jobsId, jobtitle,rateperhour,contactNumber,areaLocated, userId);
-
+        SQLiteDatabase db = this.getReadableDatabase();
+        List<Jobs> JobsList2 = new ArrayList<>();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + JOBS_TABLE + " WHERE " + COLUMN_JOBS_ID + " = ?", new String[]{String.valueOf(id)});
+        if (cursor != null && cursor.moveToFirst()) {
+            // Now you can safely read data from the cursor
+            readDataFromCursor(JobsList2, cursor);
         }
 
-        closeCursor(cursor);
-        return jobs;
+        return JobsList2;
 
     }
 
